@@ -1,0 +1,215 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  /* ── Greens ── */
+  --color-forest: #1a4731;
+  --color-grove: #2d6a4f;
+  --color-fern: #40916c;
+  --color-leaf: #52b788;
+  --color-mint: #95d5b2;
+  --color-sage: #d8f3dc;
+
+  /* ── Golds ── */
+  --color-harvest: #b5830a;
+  --color-gold: #d4a017;
+  --color-amber: #e9b84b;
+  --color-wheat: #f5d27a;
+  --color-flax: #fde9a0;
+
+  /* ── Neutrals ── */
+  --color-cream: #faf7f0;
+  --color-parchment: #f0e9d8;
+  --color-bark: #6b4c2a;
+  --color-soil: #3d2b1f;
+
+  /* ── Fonts ── */
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+
+  /* ── Sizes ── */
+  --radius-card: 1rem;
+  --radius-btn: 0.5rem;
+}
+
+/* ─── Base ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-cream);
+  color: var(--color-forest);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+}
+
+/* ─── Grain texture overlay ─────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-sage); }
+::-webkit-scrollbar-thumb { background: var(--color-fern); border-radius: 3px; }
+
+/* ─── Selection ─────────────────────────────────────── */
+::selection { background: var(--color-amber); color: var(--color-forest); }
+
+/* ─── Prose (markdown) ──────────────────────────────── */
+.prose {
+  --tw-prose-body: var(--color-forest);
+  --tw-prose-headings: var(--color-forest);
+  --tw-prose-links: var(--color-grove);
+  --tw-prose-bold: var(--color-forest);
+  --tw-prose-code: var(--color-bark);
+  --tw-prose-pre-bg: var(--color-parchment);
+  max-width: 72ch;
+}
+
+/* ─── Animations ────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+@keyframes sway {
+  0%, 100% { transform: rotate(-3deg); }
+  50%       { transform: rotate(3deg); }
+}
+
+.animate-fade-up  { animation: fadeUp 0.6s ease both; }
+.animate-fade-in  { animation: fadeIn 0.5s ease both; }
+.animate-float    { animation: float 4s ease-in-out infinite; }
+.animate-sway     { animation: sway 3s ease-in-out infinite; }
+
+/* delay utilities */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+
+/* ─── Button base ───────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.5rem;
+  border-radius: var(--radius-btn);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+}
+.btn-primary {
+  background: var(--color-grove);
+  color: white;
+}
+.btn-primary:hover {
+  background: var(--color-forest);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(45,106,79,0.35);
+}
+.btn-gold {
+  background: var(--color-gold);
+  color: var(--color-forest);
+}
+.btn-gold:hover {
+  background: var(--color-harvest);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(212,160,23,0.4);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--color-grove);
+  border: 1.5px solid var(--color-fern);
+}
+.btn-outline:hover {
+  background: var(--color-sage);
+}
+
+/* ─── Card ──────────────────────────────────────────── */
+.card {
+  background: white;
+  border-radius: var(--radius-card);
+  border: 1px solid color-mix(in srgb, var(--color-mint) 40%, transparent);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.card:hover {
+  box-shadow: 0 8px 32px rgba(26,71,49,0.12);
+  transform: translateY(-2px);
+}
+
+/* ─── Section padding ───────────────────────────────── */
+.section { padding: 5rem 0; }
+.section-sm { padding: 3rem 0; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+/* ─── Gold accent line ──────────────────────────────── */
+.gold-line {
+  display: block;
+  width: 3rem;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-gold), var(--color-amber));
+  border-radius: 2px;
+  margin: 0.75rem 0 1.5rem;
+}
+
+/* ─── Form inputs ───────────────────────────────────── */
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid var(--color-mint);
+  border-radius: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  background: white;
+  color: var(--color-forest);
+  transition: border-color 0.2s;
+  outline: none;
+}
+.input:focus {
+  border-color: var(--color-fern);
+  box-shadow: 0 0 0 3px rgba(82,183,136,0.15);
+}
+.label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-grove);
+  margin-bottom: 0.35rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ─── Page transition ───────────────────────────────── */
+.page-enter {
+  animation: fadeUp 0.4s ease both;
+}

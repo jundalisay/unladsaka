@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "$lib": ["./src/lib"],
+      "$lib/*": ["./src/lib/*"],
+      "$content": ["./src/content"],
+      "$content/*": ["./src/content/*"],
+      "$i18n": ["./src/lib/i18n"],
+      "$i18n/*": ["./src/lib/i18n/*"],
+      "$app/environment": ["./node_modules/@sveltejs/kit/src/runtime/app/environment.js"],
+      "$app/forms": ["./node_modules/@sveltejs/kit/src/runtime/app/forms.js"],
+      "$app/navigation": ["./node_modules/@sveltejs/kit/src/runtime/app/navigation.js"],
+      "$app/paths": ["./node_modules/@sveltejs/kit/src/runtime/app/paths.js"],
+      "$app/server": ["./node_modules/@sveltejs/kit/src/runtime/app/server.js"],
+      "$app/state": ["./node_modules/@sveltejs/kit/src/runtime/app/state.js"],
+      "$app/stores": ["./node_modules/@sveltejs/kit/src/runtime/app/stores.js"]
+    },
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "moduleResolution": "bundler",
+    "module": "ESNext",
+    "target": "ESNext",
+    "verbatimModuleSyntax": true,
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "isolatedModules": true
+  },
+  "include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte"],
+  "exclude": ["node_modules"]
+}

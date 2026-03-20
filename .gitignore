@@ -1,0 +1,13 @@
+.DS_Store
+node_modules/
+.svelte-kit/
+build/
+dist/
+.env
+.dev.vars
+*.local
+
+# Cloudflare
+.wrangler/
+.output/
+.vercel/

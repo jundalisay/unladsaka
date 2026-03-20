@@ -1,0 +1,11 @@
+name = "unlad-saka"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = ".svelte-kit/cloudflare"
+
+[vars]
+PUBLIC_SITE_URL = "https://unladsakaph.pages.dev"
+
+# Set secrets via: wrangler secret put TURSO_DATABASE_URL
+# wrangler secret put TURSO_AUTH_TOKEN
+# wrangler secret put ADMIN_PASSWORD

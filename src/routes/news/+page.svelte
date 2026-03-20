@@ -6,6 +6,7 @@
   import type { PageData } from './$types';
   import type { NewsArticle } from '$lib/utils/markdown';
 
+
   let { data }: { data: PageData } = $props();
   let locale = $derived((data.locale ?? 'en') as 'en' | 'tl' | 'cb');
   let articles = $derived((data.articles ?? []) as NewsArticle[]);
@@ -146,32 +147,55 @@
           {#key featuredArticle.slug}
             <article in:fly={{ y: 20, duration: 500 }}
                      class="card mb-10 overflow-hidden md:flex">
-              <!-- Accent panel -->
-              <div class="md:w-72 flex-shrink-0 flex flex-col justify-between p-8 relative overflow-hidden"
-                   style="background:linear-gradient(160deg,var(--color-forest),var(--color-grove))">
-                <div>
-                  <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4"
-                        style="background:rgba(212,160,23,0.25);color:var(--color-amber)">
-                    ✦ {t('featured')}
-                  </span>
-                  <div class="flex flex-wrap gap-1.5 mb-3">
-                    {#each featuredArticle.tags as tag}
-                      <span class="px-2 py-0.5 rounded text-xs capitalize"
-                            style="background:rgba(255,255,255,0.12);color:var(--color-mint)">{tag}</span>
-                    {/each}
-                  </div>
-                </div>
-                <!-- Decorative wheat -->
-                <svg class="absolute bottom-0 right-0 opacity-10 w-28 h-28" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <line x1="40" y1="75" x2="40" y2="10" stroke="#d4a017" stroke-width="2"/>
-                  <ellipse cx="28" cy="38" rx="8" ry="16" fill="#d4a017" transform="rotate(-30,28,38)"/>
-                  <ellipse cx="52" cy="38" rx="8" ry="16" fill="#d4a017" transform="rotate(30,52,38)"/>
-                  <ellipse cx="40" cy="12" rx="7" ry="14" fill="#d4a017"/>
-                </svg>
-                <div class="text-xs mt-4 flex items-center gap-1.5" style="color:rgba(255,255,255,0.5)">
-                  <Calendar size={11} /> {formatDate(featuredArticle.date)}
-                </div>
-              </div>
+
+<div 
+  class="relative flex md:w-72 flex-shrink-0 flex-col justify-between overflow-hidden p-8"
+  style="background: {featuredArticle.image 
+    ? `url('${featuredArticle.image}') center/cover no-repeat, linear-gradient(160deg, var(--color-forest), var(--color-grove))` 
+    : 'linear-gradient(160deg, var(--color-forest), var(--color-grove))'}"
+>
+  
+  {#if featuredArticle.image}
+    <div class="absolute inset-0 z-0 bg-black/40"></div>
+  {/if}
+  
+  <div class="relative z-10">
+    <span 
+      class="mb-4 inline-block rounded-full px-3 py-1 text-xs font-semibold"
+      style="background: rgba(212, 160, 23, 0.25); color: var(--color-amber);"
+    >
+      ✦ {t('featured')}
+    </span>
+
+    <div class="mb-3 flex flex-wrap gap-1.5">
+      {#each featuredArticle.tags as tag}
+        <span 
+          class="rounded px-2 py-0.5 text-xs capitalize"
+          style="background: rgba(255, 255, 255, 0.12); color: var(--color-mint);"
+        >
+          {tag}
+        </span>
+      {/each}
+    </div>
+  </div>
+  
+  {#if !featuredArticle.image}
+    <svg 
+      class="absolute right-0 bottom-0 z-0 h-28 w-28 opacity-10" 
+      viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"
+    >
+      <line x1="40" y1="75" x2="40" y2="10" stroke="#d4a017" stroke-width="2"/>
+      <ellipse cx="28" cy="38" rx="8" ry="16" fill="#d4a017" transform="rotate(-30,28,38)"/>
+      <ellipse cx="52" cy="38" rx="8" ry="16" fill="#d4a017" transform="rotate(30,52,38)"/>
+      <ellipse cx="40" cy="12" rx="7" ry="14" fill="#d4a017"/>
+    </svg>
+  {/if}
+  
+  <div class="relative z-10 mt-4 flex items-center gap-1.5 text-xs text-white/50">
+    <Calendar size={11} /> 
+    {formatDate(featuredArticle.date)}
+  </div>
+</div>
 
               <!-- Content -->
               <div class="p-8 flex flex-col flex-1">

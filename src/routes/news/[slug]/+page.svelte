@@ -26,29 +26,60 @@
   }
 
   // Convert basic markdown to HTML for display
-  function mdToHtml(md: string): string {
-    return md
-      // headings
-      .replace(/^### (.+)$/gm, '<h3>$1</h3>')
-      .replace(/^## (.+)$/gm, '<h2>$1</h2>')
-      .replace(/^# (.+)$/gm, '<h1>$1</h1>')
-      // bold
-      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-      // italic
-      .replace(/\*(.+?)\*/g, '<em>$1</em>')
-      // ordered list
-      .replace(/^\d+\. (.+)$/gm, '<li>$1</li>')
-      // unordered list
-      .replace(/^[-*] (.+)$/gm, '<li>$1</li>')
-      // wrap consecutive <li> in <ul>
-      .replace(/(<li>.*<\/li>\n?)+/g, (m) => `<ul>${m}</ul>`)
-      // paragraphs (double newline)
-      .replace(/\n\n(?!<[hul])/g, '</p><p>')
-      // wrap in initial <p>
-      .replace(/^(?!<[hul])(.)/m, '<p>$1')
-      // close final <p>
-      + '</p>';
-  }
+function mdToHtml(md: string): string {
+  if (!md) return '';
+
+  let html = md
+    // 1. IMAGES (Must be first)
+    .replace(/!\[(.*?)\]\((.*?)\)/g, 
+      '<img src="$2" alt="$1" class="rounded-xl my-8 w-full object-cover shadow-lg block">')
+    
+    // 2. TABLES (Matches standard Markdown table structure)
+    .replace(/^\|(.+)\|$\n^\|([-| ]+)\|$\n((?:^\|(.+)\|$\n?)+)/gm, (match, header, separator, body) => {
+      const headers = header.split('|').filter(h => h.trim()).map(h => `<th class="border px-4 py-2 bg-slate-50">${h.trim()}</th>`).join('');
+      const rows = body.trim().split('\n').map(row => {
+        const cols = row.split('|').filter(c => c.trim()).map(c => `<td class="border px-4 py-2">${c.trim()}</td>`).join('');
+        return `<tr>${cols}</tr>`;
+      }).join('');
+      return `<div class="overflow-x-auto my-6"><table class="w-full border-collapse border border-slate-200 text-sm"><thead><tr>${headers}</tr></thead><tbody>${rows}</tbody></table></div>`;
+    })
+
+    // 3. HEADINGS
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+    .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+
+    // 4. LINKS (Non-image links)
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-brand-green underline hover:text-amber-600 transition-colors font-medium">$1</a>')
+
+    // 5. BOLD & ITALIC
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+
+    // 6. LISTS
+    .replace(/^\d+\. (.+)$/gm, '<li>$1</li>')
+    .replace(/^[-*] (.+)$/gm, '<li>$1</li>');
+
+  // 7. BLOCK WRAPPING (Paragraphs and List Groups)
+  return html
+    .split('\n\n')
+    .map(block => {
+      const trimmed = block.trim();
+      if (!trimmed) return '';
+      // Don't wrap if it's already an HTML block (Table, Heading, List, Image)
+      if (trimmed.startsWith('<h') || trimmed.startsWith('<div') || trimmed.startsWith('<ul') || trimmed.startsWith('<li') || trimmed.startsWith('<img')) {
+        // If it's a list item not wrapped in UL, wrap it now
+        if (trimmed.startsWith('<li')) return `<ul class="list-disc pl-6 my-4">${trimmed}</ul>`;
+        return trimmed;
+      }
+      return `<p class="mb-4 leading-relaxed">${trimmed}</p>`;
+    })
+    .join('\n');
+}
+
+
+
+
 
   let visible = $state(false);
   onMount(() => setTimeout(() => (visible = true), 60));

@@ -130,3 +130,56 @@ CREATE TABLE registrations (
   created_at TEXT DEFAULT (CURRENT_TIMESTAMP)
 );
 ```
+
+
+
+,
+    {
+      title:    { en:'High-Value Crop Production', tl:'Pagsasaka ng mga Mataas na Kita na Pananim', cb:'Produksyon sa mga High-Value nga Tanom' },
+      desc:     { en:'Grow asparagus, strawberries, herbs, and specialty vegetables for premium export and local markets.', tl:'Matuto sa pagpapalaki ng asparagus, strawberry, halaman, at espesyal na gulay para sa premium markets.', cb:'Pagkat-on sa pagtubo sa asparagus, strawberry, ug espesyal nga mga utan para sa premium markets.' },
+      date:     'Mar 1–3, 2025',
+      mode:     'onsite',
+      location: 'La Trinidad, Benguet',
+      seats:    20,
+      duration: '3 days',
+      free:     false,
+      price:    '₱500',
+      level:    'Intermediate',
+      tags:     ['high-value', 'vegetables'],
+    },
+    {
+      title:    { en:'Post-Harvest Handling & Value Adding', tl:'Post-Harvest at Pagdaragdag ng Halaga', cb:'Post-Harvest ug Pagdugang sa Kantidad' },
+      desc:     { en:'Reduce post-harvest losses and create value-added products: dried fruits, vinegar, preserved vegetables.', tl:'Bawasan ang post-harvest na pagkawala at gumawa ng mga produktong may dagdag na halaga.', cb:'Pagminus sa post-harvest nga pagkawala ug paghimo sa mga produkto nga may dugang nga kantidad.' },
+      date:     'Mar 22, 2025',
+      mode:     'online',
+      location: 'Zoom Webinar',
+      seats:    80,
+      duration: '1 day',
+      free:     true,
+      level:    'All Levels',
+      tags:     ['post-harvest', 'value-adding'],
+    },
+    {
+      title:    { en:'Farm Financial Management', tl:'Pamamahala ng Pananalapi sa Bukid', cb:'Pagdumala sa Pananalapi sa Uma' },
+      desc:     { en:'Record-keeping, farm budgeting, loan applications, and accessing DA Agri-Negosyo programs for capital.', tl:'Pag-iingat ng rekord, budgeting ng bukid, loan applications, at mga programa ng DA.', cb:'Pag-irekord, budgeting sa uma, loan applications, ug mga programa sa DA.' },
+      date:     'Apr 5, 2025',
+      mode:     'online',
+      location: 'Zoom Webinar',
+      seats:    120,
+      duration: '1 day',
+      free:     true,
+      level:    'All Levels',
+      tags:     ['finance', 'business'],
+    },
+    {
+      title:    { en:'Climate-Smart Rice Production', tl:'Climate-Smart na Produksyon ng Palay', cb:'Climate-Smart nga Produksyon sa Humay' },
+      desc:     { en:'AWD irrigation, stress-tolerant seed varieties, and PAGASA weather tools for resilient rice farming.', tl:'AWD irrigation, mga binhing stress-tolerant, at mga tool ng PAGASA para sa matibay na pagsasaka ng palay.', cb:'AWD irrigation, stress-tolerant nga mga binhi, ug mga tool sa PAGASA para sa resilient nga pag-uma.' },
+      date:     'Apr 19–20, 2025',
+      mode:     'onsite',
+      location: 'Camarines Sur',
+      seats:    30,
+      duration: '2 days',
+      free:     true,
+      level:    'Intermediate',
+      tags:     ['rice', 'climate'],
+    },

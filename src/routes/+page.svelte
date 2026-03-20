@@ -19,6 +19,16 @@
   let statsVisible = $state(false);
   let statsRef: HTMLElement | undefined = $state();
 
+  import { ChevronDown } from 'lucide-svelte';
+
+  function scrollToTarget() {
+    window.scrollBy({
+      top: window.innerHeight,
+      behavior: 'smooth'
+    });
+  }
+
+
   onMount(() => {
     setTimeout(() => (visible = true), 80);
     const obs = new IntersectionObserver(entries => {
@@ -84,12 +94,24 @@
   <meta name="description" content="Unlad Saka unites Filipino farmers through knowledge, market access, and community. Join thousands of farmers advancing Philippine agriculture." />
 </svelte:head>
 
-<!-- ══ HERO ═══════════════════════════════════════════════════════ -->
-<section class="relative min-h-screen flex items-center overflow-hidden"
-         style="background:linear-gradient(150deg,var(--color-soil) 0%,var(--color-forest) 40%,var(--color-grove) 100%)">
 
-  <!-- Animated background elements -->
-  <div class="absolute inset-0 pointer-events-none overflow-hidden">
+
+<!-- ══ HERO ═══════════════════════════════════════════════════════ -->
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  
+  <!-- Background Video -->
+  <div class="absolute inset-0 w-full h-full z-0">
+    <video autoplay muted loop playsinline class="w-full h-full object-cover">
+      <source src="/coco.mp4" type="video/mp4">
+      <!-- Fallback background if video doesn't load -->
+      <div class="absolute inset-0" style="background:linear-gradient(150deg,var(--color-soil) 0%,var(--color-forest) 40%,var(--color-grove) 100%)"></div>
+    </video>
+    <!-- Dark overlay for text readability -->
+    <div class="absolute inset-0 bg-black/40"></div>
+  </div>
+
+  <!-- Animated background elements (moved above video but below content) -->
+  <div class="absolute inset-0 pointer-events-none overflow-hidden z-[1]">
     <!-- Large glow -->
     <div class="absolute top-1/4 right-0 w-[600px] h-[600px] rounded-full opacity-10"
          style="background:radial-gradient(circle,var(--color-amber),transparent 65%);transform:translate(30%,-20%)"></div>
@@ -105,6 +127,7 @@
       </defs>
       <rect width="100%" height="100%" fill="url(#grid)" />
     </svg>
+
     <!-- Decorative wheat SVG -->
     <svg class="absolute bottom-0 right-8 opacity-15 animate-sway" style="width:180px;height:280px;transform-origin:bottom center"
          viewBox="0 0 100 180" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -119,12 +142,13 @@
     </svg>
   </div>
 
-  <div class="container relative pt-32 pb-24">
-    <div class="max-w-2xl">
+  <!-- Content - Centered -->
+  <div class="container relative z-10 text-center pt-32 pb-24">
+    <div class="max-w-3xl mx-auto">
       {#if visible}
         <!-- Eyebrow badge -->
         <div in:fly={{ y: -10, duration: 500, delay: 50 }}
-             class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6"
+             class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 mx-auto"
              style="background:rgba(212,160,23,0.15);border:1px solid rgba(212,160,23,0.35);color:var(--color-amber);font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase">
           <Sprout size={13} />
           {t('hero_eyebrow')}
@@ -142,23 +166,23 @@
 
         <!-- Subheading -->
         <p in:fly={{ y: 20, duration: 600, delay: 300 }}
-           class="text-lg leading-relaxed mb-10 max-w-lg"
+           class="text-lg leading-relaxed mb-10 max-w-2xl mx-auto bg-black"
            style="color:rgba(255,255,255,0.72)">
           {t('hero_sub')}
         </p>
 
         <!-- CTAs -->
-        <div in:fly={{ y: 20, duration: 600, delay: 450 }} class="flex flex-wrap gap-4">
-          <a href="/#register" class="btn btn-gold" style="padding:0.9rem 2rem;font-size:1rem;font-weight:600">
+        <div in:fly={{ y: 20, duration: 600, delay: 450 }} class="flex flex-wrap gap-4 justify-center">
+          <a href="/#register" class="btn btn-gold inline-flex items-center gap-2" style="padding:0.9rem 2rem;font-size:1rem;font-weight:600">
             {t('hero_cta1')} <ArrowRight size={18} />
           </a>
-          <a href="/news" class="btn" style="padding:0.9rem 2rem;font-size:1rem;color:white;background:rgba(255,255,255,0.12);border:1.5px solid rgba(255,255,255,0.25)">
+          <a href="/news" class="btn inline-flex items-center gap-2" style="padding:0.9rem 2rem;font-size:1rem;color:white;background:rgba(255,255,255,0.12);border:1.5px solid rgba(255,255,255,0.25)">
             {t('hero_cta2')}
           </a>
         </div>
 
         <!-- Social proof -->
-        <div in:fly={{ y: 20, duration: 600, delay: 600 }} class="flex items-center gap-4 mt-10">
+        <div in:fly={{ y: 20, duration: 600, delay: 600 }} class="flex items-center justify-center gap-4 mt-10">
           <div class="flex -space-x-2">
             {#each ['🧑‍🌾','👩‍🌾','🧑‍🌾','👨‍🌾'] as emoji, i}
               <div class="w-9 h-9 rounded-full border-2 flex items-center justify-center text-base"
@@ -166,22 +190,35 @@
             {/each}
           </div>
           <p class="text-sm" style="color:rgba(255,255,255,0.65)">
-            <strong style="color:var(--color-amber);font-weight:700">12,400+</strong> farmers already joined
+            <strong style="color:var(--color-amber);font-weight:700">hundreds of farmers</strong> already joined
           </p>
         </div>
       {/if}
     </div>
   </div>
 
-  <!-- Scroll indicator -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 animate-float">
-    <span class="text-xs uppercase tracking-widest" style="color:rgba(255,255,255,0.35);font-size:0.65rem">scroll</span>
-    <ArrowDown size={18} color="rgba(255,255,255,0.3)" />
-  </div>
+
+<!-- Scroll Button -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 animate-float z-10">
+  <button 
+    on:click={scrollToTarget}
+    class="group relative w-12 h-12 rounded-full bg-green-100 dark:bg-green-800 hover:bg-green-200 dark:hover:bg-green-700 transition-all duration-300 flex items-center justify-center cursor-pointer animate-bounce"
+    aria-label={t ? `Scroll to ${t}` : label}
+  >
+    <ChevronDown size={24} class="text-gray-600 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white transition-colors" />
+    
+    <!-- Subtle ring animation -->
+    <span class="absolute inset-0 rounded-full animate-ping bg-gray-400/20 dark:bg-gray-600/20 opacity-75"></span>
+  </button>
+</div>
+
 </section>
 
+
+
+
 <!-- ══ STATS BANNER ═══════════════════════════════════════════════ -->
-<section bind:this={statsRef}
+<!-- <section bind:this={statsRef}
          style="background:var(--color-forest);border-bottom:3px solid var(--color-gold)">
   <div class="container">
     <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
@@ -201,7 +238,7 @@
       {/each}
     </div>
   </div>
-</section>
+</section> -->
 
 <!-- ══ WHY JOIN ═══════════════════════════════════════════════════ -->
 <section class="section" style="background:var(--color-cream)">
@@ -273,7 +310,7 @@
         </div>
       {:else}
         <div class="card p-8 md:p-10">
-          <form method="POST" action="?/register"
+          <form method="POST" action="https://usebasin.com/f/2468cfc045f0"
                 use:enhance={() => {
                   submitting = true;
                   return async ({ update }) => { submitting = false; await update(); };
@@ -354,7 +391,7 @@
 </section>
 
 <!-- ══ CTA STRIP ════════════════════════════════════════════════ -->
-<section style="background:var(--color-soil)">
+<!-- <section style="background:var(--color-soil)">
   <div class="container py-20">
     <div class="max-w-3xl mx-auto text-center">
       <p class="text-sm font-medium uppercase tracking-widest mb-4" style="color:var(--color-amber)">✦ Our Mission ✦</p>
@@ -381,3 +418,4 @@
     </div>
   </div>
 </section>
+ -->

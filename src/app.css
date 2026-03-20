@@ -24,8 +24,8 @@
   --color-soil: #3d2b1f;
 
   /* ── Fonts ── */
-  --font-serif: "Cormorant Garamond", Georgia, serif;
-  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-serif: "Varela Round", sans-serif;
+  --font-sans: "Varela Round", sans-serif;
 
   /* ── Sizes ── */
   --radius-card: 1rem;

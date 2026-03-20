@@ -68,7 +68,7 @@
     <a href="/" class="flex items-center gap-3 group" aria-label="Unlad Saka – Home">
       <div class="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:rotate-12 group-hover:scale-110"
            style="background:linear-gradient(135deg,var(--color-gold),var(--color-amber));box-shadow:0 2px 12px rgba(212,160,23,0.4)">
-        <Sprout size={19} color="var(--color-forest)" strokeWidth={2.5} />
+        <img src="/unlad.svg" a="Icon">
       </div>
       <div class="leading-none">
         <span class="font-serif font-bold text-lg block transition-colors"
@@ -180,7 +180,7 @@
 <main>{@render children()}</main>
 
 <!-- ── Footer ─────────────────────────────────────────────────── -->
-<footer style="background:var(--color-soil)">
+<footer style="background:var(--color-soil)" class="pt-12">
   <div class="container py-16">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-10">
 
@@ -231,8 +231,8 @@
           </a>
         </div>
         <address class="not-italic text-sm" style="color:var(--color-sage);opacity:0.5">
-          <a href="mailto:info@unladsakaph.org" class="hover:opacity-80 transition-opacity block">
-            info@unladsakaph.org
+          <a href="mailto:jose@unladsaka.com" class="hover:opacity-80 transition-opacity block">
+            jose@unladsaka.com
           </a>
         </address>
       </div>

@@ -24,9 +24,9 @@
                   tl: 'I-browse ang mga programa ayon sa espesyalisasyon.',
                   cb: 'I-browse ang mga programa base sa espesyalisasyon.' },
     benefits:   { en: 'Why Train with Unlad Saka?',   tl: 'Bakit Mag-aral sa Unlad Saka?',  cb: 'Ngano Magbansay sa Unlad Saka?' },
-    cert:       { en: 'DA-recognized certificate upon completion.',
-                  tl: 'DA-recognized na sertipiko pagkatapos.',
-                  cb: 'DA-recognized nga sertipiko pagkahuman.' },
+    cert:       { en: 'Get updates from government',
+                  tl: 'Get updates from government.',
+                  cb: 'Get updates from government.' },
     network:    { en: 'Connect with expert trainors and fellow farmers.',
                   tl: 'Kumonekta sa mga eksperto at kapwa magsasaka.',
                   cb: 'Konek sa mga eksperto ug kauban nga mag-uuma.' },
@@ -59,77 +59,28 @@
   const sessions: Session[] = [
     {
       title:    { en:'Organic Farming Fundamentals', tl:'Mga Pundasyon ng Organic Farming', cb:'Mga Pundasyon sa Organic Farming' },
-      desc:     { en:'Hands-on soil health, composting, natural pest management, and organic certification processes.', tl:'Praktikal na pag-aaral tungkol sa kalusugan ng lupa, compost, at natural na pamamahala ng peste.', cb:'Praktikal nga pagkat-on bahin sa kahimsog sa yuta, compost, ug natural nga pagdumala sa peste.' },
-      date:     'Feb 8–10, 2025',
+      desc:     { en:'Soil health, composting, natural pest management, and organic certification processes.', tl:'Praktikal na pag-aaral tungkol sa kalusugan ng lupa, compost, at natural na pamamahala ng peste.', cb:'Praktikal nga pagkat-on bahin sa kahimsog sa yuta, compost, ug natural nga pagdumala sa peste.' },
+      date:     'Feb 8, 2025',
       mode:     'onsite',
       location: 'Sta. Rosa, Laguna',
       seats:    25,
-      duration: '3 days',
+      duration: '1 day',
       free:     true,
       level:    'Beginner',
       tags:     ['organic', 'soil'],
     },
     {
-      title:    { en:'Digital Tools for Modern Farmers', tl:'Mga Digital na Kasangkapan para sa mga Magsasaka', cb:'Digital nga mga Kasangkapan alang sa mga Mag-uuma' },
-      desc:     { en:'Farm management apps, satellite field mapping, weather forecasting, and e-commerce for selling produce.', tl:'Pag-aralan ang mga app sa pamamahala ng bukid, satellite mapping, at e-commerce.', cb:'Pagkat-on sa mga app sa pagdumala sa uma, satellite mapping, ug e-commerce.' },
+      title:    { en:'Digital App for Modern Farmers', tl:'Mga Digital na Kasangkapan para sa mga Magsasaka', cb:'Digital nga mga Kasangkapan alang sa mga Mag-uuma' },
+      desc:     { en:'Farm management apps and e-commerce for selling produce.', tl:'Pag-aralan ang mga app sa pamamahala ng bukid at e-commerce.', cb:'Pagkat-on sa mga app sa pagdumala sa uma  ug e-commerce.' },
       date:     'Feb 15, 2025',
       mode:     'online',
       location: 'Zoom Webinar',
-      seats:    100,
+      seats:    20,
       duration: '1 day',
       free:     true,
       level:    'All Levels',
       tags:     ['technology', 'digital'],
-    },
-    {
-      title:    { en:'High-Value Crop Production', tl:'Pagsasaka ng mga Mataas na Kita na Pananim', cb:'Produksyon sa mga High-Value nga Tanom' },
-      desc:     { en:'Grow asparagus, strawberries, herbs, and specialty vegetables for premium export and local markets.', tl:'Matuto sa pagpapalaki ng asparagus, strawberry, halaman, at espesyal na gulay para sa premium markets.', cb:'Pagkat-on sa pagtubo sa asparagus, strawberry, ug espesyal nga mga utan para sa premium markets.' },
-      date:     'Mar 1–3, 2025',
-      mode:     'onsite',
-      location: 'La Trinidad, Benguet',
-      seats:    20,
-      duration: '3 days',
-      free:     false,
-      price:    '₱500',
-      level:    'Intermediate',
-      tags:     ['high-value', 'vegetables'],
-    },
-    {
-      title:    { en:'Post-Harvest Handling & Value Adding', tl:'Post-Harvest at Pagdaragdag ng Halaga', cb:'Post-Harvest ug Pagdugang sa Kantidad' },
-      desc:     { en:'Reduce post-harvest losses and create value-added products: dried fruits, vinegar, preserved vegetables.', tl:'Bawasan ang post-harvest na pagkawala at gumawa ng mga produktong may dagdag na halaga.', cb:'Pagminus sa post-harvest nga pagkawala ug paghimo sa mga produkto nga may dugang nga kantidad.' },
-      date:     'Mar 22, 2025',
-      mode:     'online',
-      location: 'Zoom Webinar',
-      seats:    80,
-      duration: '1 day',
-      free:     true,
-      level:    'All Levels',
-      tags:     ['post-harvest', 'value-adding'],
-    },
-    {
-      title:    { en:'Farm Financial Management', tl:'Pamamahala ng Pananalapi sa Bukid', cb:'Pagdumala sa Pananalapi sa Uma' },
-      desc:     { en:'Record-keeping, farm budgeting, loan applications, and accessing DA Agri-Negosyo programs for capital.', tl:'Pag-iingat ng rekord, budgeting ng bukid, loan applications, at mga programa ng DA.', cb:'Pag-irekord, budgeting sa uma, loan applications, ug mga programa sa DA.' },
-      date:     'Apr 5, 2025',
-      mode:     'online',
-      location: 'Zoom Webinar',
-      seats:    120,
-      duration: '1 day',
-      free:     true,
-      level:    'All Levels',
-      tags:     ['finance', 'business'],
-    },
-    {
-      title:    { en:'Climate-Smart Rice Production', tl:'Climate-Smart na Produksyon ng Palay', cb:'Climate-Smart nga Produksyon sa Humay' },
-      desc:     { en:'AWD irrigation, stress-tolerant seed varieties, and PAGASA weather tools for resilient rice farming.', tl:'AWD irrigation, mga binhing stress-tolerant, at mga tool ng PAGASA para sa matibay na pagsasaka ng palay.', cb:'AWD irrigation, stress-tolerant nga mga binhi, ug mga tool sa PAGASA para sa resilient nga pag-uma.' },
-      date:     'Apr 19–20, 2025',
-      mode:     'onsite',
-      location: 'Camarines Sur',
-      seats:    30,
-      duration: '2 days',
-      free:     true,
-      level:    'Intermediate',
-      tags:     ['rice', 'climate'],
-    },
+    }
   ];
 
   const tracks = [
@@ -184,7 +135,7 @@
       </div>
 
       <!-- Learning tracks -->
-      <div class="mb-16">
+<!--       <div class="mb-16">
         <h2 class="font-serif text-3xl font-bold text-center mb-2" style="color:var(--color-forest)">{t('tracks')}</h2>
         <p class="text-center opacity-55 mb-8 text-sm">{t('tracks_sub')}</p>
         <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-9 gap-3">
@@ -197,7 +148,7 @@
             </div>
           {/each}
         </div>
-      </div>
+      </div> -->
 
       <!-- Sessions -->
       <h2 class="font-serif text-3xl font-bold mb-8" style="color:var(--color-forest)">{t('upcoming')}</h2>

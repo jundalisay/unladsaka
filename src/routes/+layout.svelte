@@ -190,7 +190,7 @@
         <a href="/" class="flex items-center gap-3 mb-5 group">
           <div class="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0"
                style="background:linear-gradient(135deg,var(--color-gold),var(--color-amber))">
-            <Sprout size={22} color="var(--color-forest)" />
+            <img src="/unlad.svg" a="Icon">
           </div>
           <span class="font-serif text-xl font-bold" style="color:var(--color-wheat)">Unlad Saka</span>
         </a>
@@ -245,7 +245,8 @@
       <p class="text-xs" style="color:var(--color-sage);opacity:0.35">
         &copy; {new Date().getFullYear()} Unlad Saka. {footerT.rights[locale]}
       </p>
-      <p class="text-xs" style="color:var(--color-sage);opacity:0.25">Built with 🌾 for Filipino farmers</p>
+      <p class="text-xs text-white" >Built with ❤️ by <a href="https://www.pantrypoints.com">Pantrypoints</a></p>
     </div>
   </div>
 </footer>
+ 

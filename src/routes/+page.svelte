@@ -39,7 +39,7 @@
   });
 
   const T: Record<string, Record<string, string>> = {
-    hero_eyebrow: { en: 'Samahan ng mga Magsasaka', tl: 'Samahan ng mga Magsasaka', cb: 'Katilingban sa mga Mag-uuma' },
+    hero_eyebrow: { en: 'Farmer Association', tl: 'Samahan ng mga Magsasaka', cb: 'Katilingban sa mga Mag-uuma' },
     hero_title1:  { en: 'Growing Together,', tl: 'Sama-sama Tayong Lumalago,', cb: 'Magkauban Kitang Motubo,' },
     hero_title2:  { en: 'Harvesting Tomorrow', tl: 'Masaganang Bukas', cb: 'Maabundansiyang Ugma' },
     hero_sub:     { en: 'Unlad Saka unites Filipino farmers to build stronger communities, share knowledge, and advance sustainable agriculture across the archipelago.', tl: 'Ang Unlad Saka ay nagbubuklod sa mga magsasakang Pilipino upang bumuo ng mas matibay na komunidad at isulong ang napapanatiling pagsasaka.', cb: 'Ang Unlad Saka nagpahiusa sa mga mag-uumang Pilipino aron magtukod ug mas lig-on nga komunidad ug ipadayon ang napadayong pahumok.' },
@@ -130,7 +130,7 @@
     </svg>
 
     <!-- Decorative wheat SVG -->
-    <svg class="absolute bottom-0 right-8 opacity-15 animate-sway" style="width:180px;height:280px;transform-origin:bottom center"
+    <!-- <svg class="absolute bottom-0 right-8 opacity-15 animate-sway" style="width:180px;height:280px;transform-origin:bottom center"
          viewBox="0 0 100 180" fill="none" xmlns="http://www.w3.org/2000/svg">
       <line x1="50" y1="170" x2="50" y2="20" stroke="#d4a017" stroke-width="2.5"/>
       <ellipse cx="38" cy="80" rx="10" ry="20" fill="#d4a017" transform="rotate(-35,38,80)"/>
@@ -140,7 +140,7 @@
       <ellipse cx="65" cy="100" rx="10" ry="20" fill="#d4a017" transform="rotate(30,65,100)"/>
       <ellipse cx="63" cy="120" rx="10" ry="20" fill="#d4a017" transform="rotate(25,63,120)"/>
       <ellipse cx="50" cy="22" rx="8" ry="18" fill="#d4a017"/>
-    </svg>
+    </svg> -->
   </div>
 
   <!-- Content - Centered -->
@@ -149,7 +149,7 @@
       {#if visible}
         <!-- Eyebrow badge -->
         <div in:fly={{ y: -10, duration: 500, delay: 50 }}
-             class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 mx-auto"
+             class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full my-6 mx-auto"
              style="background:rgba(212,160,23,0.15);border:1px solid rgba(212,160,23,0.35);color:var(--color-amber);font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase">
           <Sprout size={13} />
           {t('hero_eyebrow')}

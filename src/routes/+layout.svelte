@@ -179,6 +179,8 @@
 <!-- ── Page content ────────────────────────────────────────────── -->
 <main>{@render children()}</main>
 
+
+
 <!-- ── Footer ─────────────────────────────────────────────────── -->
 <footer style="background:var(--color-soil)" class="pt-12">
   <div class="container py-16">
@@ -232,7 +234,7 @@
         </div>
         <address class="not-italic text-sm" style="color:var(--color-sage);opacity:0.5">
           <a href="mailto:jose@unladsaka.com" class="hover:opacity-80 transition-opacity block">
-            jose@unladsaka.com
+            hello@unladsaka.com
           </a>
         </address>
       </div>

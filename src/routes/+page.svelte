@@ -85,9 +85,10 @@
     { icon: BarChart3,    color: '#52b788', bg: '#d8f3dc', en: 'Market Access', tl: 'Access sa Merkado', cb: 'Pag-access sa Merkado', bodyEn: 'Connect directly with buyers, traders, and cooperatives across the Philippines for fair prices.', bodyTl: 'Direktang kumonekta sa mga mamimili at kooperatibo sa buong Pilipinas para sa makatarungang presyo.', bodyCb: 'Direkta nga konek sa mga mamumpalit ug kooperatiba sa tibuok Pilipinas.' },
     { icon: GraduationCap, color: '#d4a017', bg: '#fde9a0', en: 'Expert Training', tl: 'Eksperto na Pagsasanay', cb: 'Esperto nga Pagbansay', bodyEn: 'Free workshops on modern farming, soil health, climate adaptation, and agri-technology.', bodyTl: 'Libreng mga workshop sa modernong pagsasaka, kalusugan ng lupa, at teknolohiya.', bodyCb: 'Libre nga mga workshop sa modernong pagpananom, kahimsog sa yuta, ug teknolohiya.' },
     { icon: ShieldCheck,  color: '#2d6a4f', bg: '#d8f3dc', en: 'Government Liaison', tl: 'Pakikipag-ugnayan sa Pamahalaan', cb: 'Pag-liaison sa Gobyerno', bodyEn: "We advocate for farmers' rights and navigate DA, PCIC, and government support programs on your behalf.", bodyTl: 'Nagtataguyod kami ng mga karapatan ng magsasaka at tumutulong sa mga programa ng gobyerno.', bodyCb: 'Nagtuyo kami sa mga katungod sa mag-uuma ug nagtabang sa mga programa sa gobyerno.' },
-    { icon: Handshake,    color: '#b5830a', bg: '#fde9a0', en: 'Community Network', tl: 'Network ng Komunidad', cb: 'Network sa Komunidad', bodyEn: 'Build lasting relationships and share knowledge with 12,000+ farmers across the archipelago.', bodyTl: 'Bumuo ng matibay na ugnayan at magbahagi ng kaalaman sa 12,000+ magsasaka.', bodyCb: 'Pagtukod ug matibay nga relasyon ug pagpaambit sa kahibalo sa 12,000+ ka mag-uuma.' },
+    { icon: Handshake,    color: '#b5830a', bg: '#fde9a0', en: 'Community Network', tl: 'Network ng Komunidad', cb: 'Network sa Komunidad', bodyEn: 'Build lasting relationships and share knowledge with 100+ farmers across the archipelago.', bodyTl: 'Bumuo ng matibay na ugnayan at magbahagi ng kaalaman sa 100+ magsasaka.', bodyCb: 'Pagtukod ug matibay nga relasyon ug pagpaambit sa kahibalo sa 100+ ka mag-uuma.' },
   ];
 </script>
+
 
 <svelte:head>
   <title>Unlad Saka – Philippine Farm Association</title>

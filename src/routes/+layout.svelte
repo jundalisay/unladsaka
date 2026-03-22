@@ -24,6 +24,7 @@
     { href: '/harvest',  label: { en: 'Harvest',  tl: 'Ani',        cb: 'Ani'       } },
     { href: '/news',     label: { en: 'News',     tl: 'Balita',     cb: 'Balita'    } },
     { href: '/training', label: { en: 'Training', tl: 'Pagsasanay', cb: 'Pagbansay' } },
+    { href: '/about', label: { en: 'About', tl: 'Sino Kami?', cb: 'About' } }
   ];
 
   const joinLabel: Record<Locale, string> = { en: 'Join Now', tl: 'Sumali Na', cb: 'Apil Na' };

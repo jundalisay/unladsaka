@@ -43,7 +43,7 @@ function mdToHtml(md: string): string {
       }).join('');
       return `<div class="overflow-x-auto my-6"><table class="w-full border-collapse border border-slate-200 text-sm"><thead><tr>${headers}</tr></thead><tbody>${rows}</tbody></table></div>`;
     })
-
+    
     // 3. HEADINGS
     .replace(/^### (.+)$/gm, '<h3>$1</h3>')
     .replace(/^## (.+)$/gm, '<h2>$1</h2>')

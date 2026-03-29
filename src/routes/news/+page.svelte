@@ -148,12 +148,10 @@
             <article in:fly={{ y: 20, duration: 500 }}
                      class="card mb-10 overflow-hidden md:flex">
 
-<div 
-  class="relative flex md:w-72 flex-shrink-0 flex-col justify-between overflow-hidden p-8"
+<div class="relative flex md:w-72 flex-shrink-0 flex-col justify-between overflow-hidden p-8"
   style="background: {featuredArticle.image 
     ? `url('${featuredArticle.image}') center/cover no-repeat, linear-gradient(160deg, var(--color-forest), var(--color-grove))` 
-    : 'linear-gradient(160deg, var(--color-forest), var(--color-grove))'}"
->
+    : 'linear-gradient(160deg, var(--color-forest), var(--color-grove))'}">
   
   {#if featuredArticle.image}
     <div class="absolute inset-0 z-0 bg-black/40"></div>
@@ -162,8 +160,7 @@
   <div class="relative z-10">
     <span 
       class="mb-4 inline-block rounded-full px-3 py-1 text-xs font-semibold"
-      style="background: rgba(212, 160, 23, 0.25); color: var(--color-amber);"
-    >
+      style="background: rgba(212, 160, 23, 0.25); color: var(--color-amber);">
       ✦ {t('featured')}
     </span>
 
@@ -199,23 +196,24 @@
 
               <!-- Content -->
               <div class="p-8 flex flex-col flex-1">
-                <h2 class="font-serif text-2xl md:text-3xl font-bold leading-snug mb-3"
-                    style="color:var(--color-forest)">
-                  {featuredArticle.title}
-                </h2>
-                <p class="leading-relaxed opacity-70 mb-6 flex-1" style="font-size:1rem">
-                  {featuredArticle.description}
-                </p>
-                <div class="flex flex-wrap items-center justify-between gap-4">
-                  <div class="flex flex-wrap gap-4 text-xs opacity-50">
-                    <span class="flex items-center gap-1.5"><User size={12} />{t('by')} {featuredArticle.author}</span>
-                    <span class="flex items-center gap-1.5"><Clock size={12} />{featuredArticle.readTime} {t('minread')}</span>
+                <a href="/news/{featuredArticle.slug}">
+                  <h2 class="font-serif text-2xl md:text-3xl font-bold leading-snug mb-3"
+                      style="color:var(--color-forest)">
+                    {featuredArticle.title}
+                  </h2>
+                  <p class="leading-relaxed opacity-70 mb-6 flex-1" style="font-size:1rem">
+                    {featuredArticle.description}
+                  </p>
+                  <div class="flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex flex-wrap gap-4 text-xs opacity-50">
+                      <span class="flex items-center gap-1.5"><User size={12} />{t('by')} {featuredArticle.author}</span>
+                      <span class="flex items-center gap-1.5"><Clock size={12} />{featuredArticle.readTime} {t('minread')}</span>
+                    </div>
+                    <div class="btn btn-primary" style="padding:0.6rem 1.5rem;font-size:0.875rem">
+                      {t('read')} <ArrowRight size={15} />
+                    </div>
                   </div>
-                  <a href="/news/{featuredArticle.slug}"
-                     class="btn btn-primary" style="padding:0.6rem 1.5rem;font-size:0.875rem">
-                    {t('read')} <ArrowRight size={15} />
-                  </a>
-                </div>
+                </a>
               </div>
             </article>
           {/key}
@@ -226,36 +224,64 @@
           <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {#each restArticles as article, i (article.slug)}
               <article in:fly={{ y: 20, duration: 400, delay: i * 80 }}
-                       class="card flex flex-col group">
-                <div class="h-1.5 flex-shrink-0"
-                     style="background:linear-gradient(90deg,var(--color-grove),var(--color-amber))"></div>
-                <div class="p-6 flex flex-col flex-1">
-                  <div class="flex flex-wrap gap-1.5 mb-3">
-                    {#each article.tags.slice(0, 3) as tag}
-                      <span class="px-2 py-0.5 rounded-full text-xs font-medium capitalize"
-                            style="background:var(--color-sage);color:var(--color-grove)">{tag}</span>
-                    {/each}
+                       class="card flex flex-col group overflow-hidden">
+                  <!-- Image Section -->
+                <a href="/news/{article.slug}">
+                  <div class="relative w-full aspect-[16/9] overflow-hidden bg-gray-100">
+                    {#if article.image}
+                      <img 
+                        src={article.image} 
+                        alt={article.title}
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy" />
+                    {:else}
+                      <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-gold-400/20 to-amber-400/20">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="text-gold-500/50">
+                          <rect x="2" y="2" width="20" height="20" rx="2.18"/>
+                          <circle cx="8.5" cy="8.5" r="1.5"/>
+                          <path d="M21 15l-5-5-5 5-5-5-4 4"/>
+                        </svg>
+                      </div>
+                    {/if}
+                    
+                    <!-- Optional gradient overlay for text readability -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   </div>
-                  <h3 class="font-serif text-xl font-bold leading-snug mb-2 transition-colors"
-                      style="color:var(--color-forest)">
-                    {article.title}
-                  </h3>
-                  <p class="text-sm leading-relaxed opacity-65 mb-4 flex-1 line-clamp-3">
-                    {article.description}
-                  </p>
-                  <div class="border-t pt-4 mt-auto flex items-center justify-between gap-2"
-                       style="border-color:var(--color-sage)">
-                    <div class="flex flex-wrap gap-3 text-xs opacity-45">
-                      <span class="flex items-center gap-1"><Calendar size={11} />{formatDate(article.date)}</span>
-                      <span class="flex items-center gap-1"><Clock size={11} />{article.readTime} {t('minread')}</span>
+                  
+                  <div class="h-1.5 flex-shrink-0"
+                       style="background:linear-gradient(90deg,var(--color-grove),var(--color-amber))"></div>
+                  
+                  <div class="p-6 flex flex-col flex-1">
+                    <div class="flex flex-wrap gap-1.5 mb-3">
+                      {#each article.tags.slice(0, 3) as tag}
+                        <span class="px-2 py-0.5 rounded-full text-xs font-medium capitalize"
+                              style="background:var(--color-sage);color:var(--color-grove)">{tag}</span>
+                      {/each}
                     </div>
-                    <a href="/news/{article.slug}"
-                       class="flex items-center gap-1 text-xs font-semibold transition-all hover:gap-2"
-                       style="color:var(--color-grove)">
-                      {t('read')} <ArrowRight size={13} />
-                    </a>
+                    
+                    <h3 class="font-serif text-xl font-bold leading-snug mb-2 transition-colors"
+                        style="color:var(--color-forest)">
+                      {article.title}
+                    </h3>
+                    
+                    <p class="text-sm leading-relaxed opacity-65 mb-4 flex-1 line-clamp-3">
+                      {article.description}
+                    </p>
+                    
+                    <div class="border-t pt-4 mt-auto flex items-center justify-between gap-2"
+                         style="border-color:var(--color-sage)">
+                      <div class="flex flex-wrap gap-3 text-xs opacity-45">
+                        <span class="flex items-center gap-1"><Calendar size={11} />{formatDate(article.date)}</span>
+                        <span class="flex items-center gap-1"><Clock size={11} />{article.readTime} {t('minread')}</span>
+                      </div>
+                      
+                      <div class="flex items-center gap-1 text-xs font-semibold transition-all hover:gap-2"
+                         style="color:var(--color-grove)">
+                        {t('read')} <ArrowRight size={13} />
+                      </div>
+                    </div>
                   </div>
-                </div>
+                </a>
               </article>
             {/each}
           </div>

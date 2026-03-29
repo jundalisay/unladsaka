@@ -213,7 +213,7 @@ onMount(() => {
       </p>
     </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
       {#each functions as fn, i}
         <div 
           in:fly={{ y: 30, duration: 500, delay: i * 100 }}

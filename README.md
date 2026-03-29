@@ -183,3 +183,21 @@ CREATE TABLE registrations (
       level:    'Intermediate',
       tags:     ['rice', 'climate'],
     },
+
+
+
+feb 3,2022 copra 55
+oct 14,2021 copra 46.50 dehusked nuts 9.5
+jun 12, 2020 COPRA 28 NUTS 8.1
+apr 23, 2020 copra 25.50
+mar 27, 2020 Copra 24 nuts 7
+mar 19, 2020 Copra 24 Coconut 8
+mar 7, 2020 COPRA 25 Coconut 8.2
+feb 2, 2020 COPRA 26.5, fresh coconut 10, nuts 7
+jan 20, 2020 COPRA 29 COCONUT DEHUSK 7 BUKO 10
+dec 22, 2019 COPRA 30
+nov 26, 2015 copras 31, nuts 9
+Nov. 10 2015 nuts 10 Copras 30
+Nov 7 2015 Copras 30 dehusked nut 8 
+
+A prominent coconut land owner of Jomalig..during coconut summit organize by LGU and DA with Mayor and MAO Dec 12 14

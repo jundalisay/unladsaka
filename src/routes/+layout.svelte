@@ -21,9 +21,10 @@
 
   const navLinks = [
     { href: '/',         label: { en: 'Home',     tl: 'Tahanan',    cb: 'Panimalay' } },
-    { href: '/harvest',  label: { en: 'Harvest',  tl: 'Ani',        cb: 'Ani'       } },
+    { href: '/prices',     label: { en: 'Prices',     tl: 'Mga Presyo',     cb: 'Prices'    } },
     { href: '/news',     label: { en: 'News',     tl: 'Balita',     cb: 'Balita'    } },
     { href: '/training', label: { en: 'Training', tl: 'Pagsasanay', cb: 'Pagbansay' } },
+    { href: '/harvest',  label: { en: 'Harvest',  tl: 'Ani',        cb: 'Ani'       } },    
     { href: '/about', label: { en: 'About', tl: 'Sino Kami?', cb: 'About' } }
   ];
 

@@ -336,7 +336,7 @@
               <!-- Full name (full width) -->
               <div class="md:col-span-2">
                 <label class="label" for="fn">{t('lbl_name')} *</label>
-                <input class="input" id="fn" name="fullName" type="text" required placeholder="Juan dela Cruz" autocomplete="name" />
+                <input class="input" id="fn" name="name" type="text" required placeholder="Juan dela Cruz" autocomplete="name" />
               </div>
               <!-- Email -->
               <div>

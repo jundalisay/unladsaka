@@ -312,19 +312,22 @@
       {:else}
         <div class="card p-8 md:p-10">        
 
-          <form id="contact-form" method="POST" action="https://pantrypoints.com/api/external"
-                use:enhance={() => {
-                  submitting = true;
-                  return async ({ update }) => { submitting = false; await update(); };
-                }}>
 
-            {#if form?.error}
-              <div in:fly={{ y: -8, duration: 300 }}
-                   class="flex items-center gap-2 mb-6 p-4 rounded-xl text-sm"
-                   style="background:#fff0f0;color:#b91c1c;border:1px solid #fecaca">
-                <AlertCircle size={18} /> {form.error}
-              </div>
-            {/if}
+            <form 
+              id="contact-form" 
+              method="POST" 
+              action="https://pantrypoints.com/api/external"
+              on:submit={() => submitting = true}>
+              <input type="hidden" name="source" value="Unlad Saka Registration at Root" />
+
+              {#if form?.error}
+                <div in:fly={{ y: -8, duration: 300 }}
+                     class="flex items-center gap-2 mb-6 p-4 rounded-xl text-sm"
+                     style="background:#fff0f0;color:#b91c1c;border:1px solid #fecaca">
+                  <AlertCircle size={18} /> {form.error}
+                </div>
+              {/if}
+
 
             <input name="source" name="Maharlikanism Contact Form" type="hidden">
 

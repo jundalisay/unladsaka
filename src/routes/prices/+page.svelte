@@ -65,7 +65,7 @@
   const t = (key: string): string => {
     const translations: Record<string, Record<'en' | 'tl' | 'cb', string>> = {
       title: { en: 'Copra & Coconut Market', tl: 'Merkado ng Kopra at Niyog', cb: 'Pamilihan sa Kopra ug Niyog' },
-      subtitle: { en: 'Historical farmgate prices with interactive trends', tl: 'Makasaysayang mga presyo sa bukid na may interaktibong trend', cb: 'Mga presyo sa uma sa kasaysayan nga adunay interaktibong uso' },
+      subtitle: { en: 'Historical farmgate prices in Lucena Philippines', tl: 'Makasaysayang mga presyo sa bukid sa Lucena Philippines', cb: 'Mga presyo sa uma sa kasaysayan sa Lucena Philippines' },
       chart: { en: 'Price Trends', tl: 'Trend ng Presyo', cb: 'Uso sa Presyo' },
       table: { en: 'Price Table', tl: 'Talahanayan ng Presyo', cb: 'Lamesa sa Presyo' },
       date: { en: 'Date', tl: 'Petsa', cb: 'Petsa' },
@@ -434,5 +434,3 @@
     filter: brightness(0.97);
   }
 </style>
-
-

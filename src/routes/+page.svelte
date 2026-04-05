@@ -310,8 +310,9 @@
           </div>
         </div>
       {:else}
-        <div class="card p-8 md:p-10">
-          <form method="POST" action="https://usebasin.com/f/2468cfc045f0"
+        <div class="card p-8 md:p-10">        
+
+          <form id="contact-form" method="POST" action="https://pantrypoints.com/api/external"
                 use:enhance={() => {
                   submitting = true;
                   return async ({ update }) => { submitting = false; await update(); };
@@ -324,6 +325,8 @@
                 <AlertCircle size={18} /> {form.error}
               </div>
             {/if}
+
+            <input name="source" name="Maharlikanism Contact Form" type="hidden">
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
               <input class="hidden" id="source" name="source" type="text" value="Unlad Saka Registration at Root" />

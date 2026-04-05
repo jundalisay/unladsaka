@@ -367,13 +367,13 @@
               <!-- Crops (full width) -->
               <div class="md:col-span-2">
                 <label class="label" for="cr">{t('lbl_crops')}</label>
-                <input class="input" id="cr" name="subj" type="text"
+                <input class="input" id="cr" name="subject" type="text"
                        placeholder={t('lbl_cph')} />
               </div>
               <!-- Message (full width) -->
               <div class="md:col-span-2">
                 <label class="label" for="mg">{t('lbl_msg')}</label>
-                <textarea class="input" id="mg" name="msg" rows="3"
+                <textarea class="input" id="mg" name="message" rows="3"
                           placeholder={t('lbl_mph')} style="resize:vertical;min-height:80px"></textarea>
               </div>
             </div>

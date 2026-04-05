@@ -330,16 +330,13 @@
               {/if}
 
 
-            <input name="source" id="source" value="Unlad Saka Reg Form" type="hidden">
-
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
               <input class="hidden" id="source" name="source" type="text" value="Unlad Saka Registration at Root" />
 
               <!-- Full name (full width) -->
               <div class="md:col-span-2">
                 <label class="label" for="fn">{t('lbl_name')} *</label>
-                <input class="input" id="fn" name="fullName" type="text" required
-                       placeholder="Juan dela Cruz" autocomplete="name" />
+                <input class="input" id="fn" name="fullName" type="text" required placeholder="Juan dela Cruz" autocomplete="name" />
               </div>
               <!-- Email -->
               <div>
@@ -356,7 +353,7 @@
               <!-- Region -->
               <div>
                 <label class="label" for="rg">{t('lbl_region')}</label>
-                <select class="input" id="rg" name="region">
+                <select class="input" id="rg" name="country">
                   <option value="">{t('lbl_rph')}</option>
                   {#each regions as r}<option value={r}>{r}</option>{/each}
                 </select>
@@ -364,19 +361,19 @@
               <!-- Farm size -->
               <div>
                 <label class="label" for="fs">{t('lbl_farm')}</label>
-                <input class="input" id="fs" name="farmSize" type="number" min="0" step="0.1"
+                <input class="input" id="fs" name="age" type="number" min="0" step="0.1"
                        placeholder="0.5" />
               </div>
               <!-- Crops (full width) -->
               <div class="md:col-span-2">
                 <label class="label" for="cr">{t('lbl_crops')}</label>
-                <input class="input" id="cr" name="crops" type="text"
+                <input class="input" id="cr" name="subj" type="text"
                        placeholder={t('lbl_cph')} />
               </div>
               <!-- Message (full width) -->
               <div class="md:col-span-2">
                 <label class="label" for="mg">{t('lbl_msg')}</label>
-                <textarea class="input" id="mg" name="message" rows="3"
+                <textarea class="input" id="mg" name="msg" rows="3"
                           placeholder={t('lbl_mph')} style="resize:vertical;min-height:80px"></textarea>
               </div>
             </div>

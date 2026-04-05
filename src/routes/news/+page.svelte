@@ -2,7 +2,7 @@
   import { fly, fade, scale } from 'svelte/transition';
   import { cubicOut } from 'svelte/easing';
   import { onMount } from 'svelte';
-  import { Search, Calendar, Clock, User, ArrowRight, Newspaper, X, Tag } from 'lucide-svelte';
+  import { Search, Calendar, Clock, User, ArrowRight, Newspaper, X, Tag, ChevronLeft, ChevronRight } from 'lucide-svelte';
   import type { PageData } from './$types';
   import type { NewsArticle } from '$lib/utils/markdown';
 
@@ -26,12 +26,20 @@
     by:       { en: 'By',                  tl: 'Ni',                     cb: 'Ni' },
     featured: { en: 'Featured',            tl: 'Tampok',                 cb: 'Gipunting' },
     clear:    { en: 'Clear',               tl: 'I-clear',                cb: 'I-clear' },
+    prev:     { en: 'Previous',            tl: 'Nakaraan',               cb: 'Naauna' },
+    next:     { en: 'Next',                tl: 'Susunod',                cb: 'Sunod' },
+    page:     { en: 'Page',                tl: 'Pahina',                 cb: 'Pahina' },
+    of:       { en: 'of',                  tl: 'ng',                     cb: 'sa' },
   };
   const t = (k: string) => T[k]?.[locale] ?? T[k]?.en ?? k;
 
   let searchQuery = $state('');
   let selectedTag = $state('');
   let visible = $state(false);
+  
+  // Pagination state
+  let currentPage = $state(1);
+  let itemsPerPage = $state(6); // Number of articles per page (excluding featured)
 
   onMount(() => setTimeout(() => (visible = true), 80));
 
@@ -47,6 +55,11 @@
     return matchQ && matchT;
   }));
 
+  // Reset to page 1 when filters change
+  $effect(() => {
+    currentPage = 1;
+  });
+
   function formatDate(d: string) {
     if (!d) return '';
     try {
@@ -56,10 +69,47 @@
 
   let featuredArticle = $derived(filtered[0] ?? null);
   let restArticles = $derived(filtered.slice(1));
+  
+  // Pagination calculations
+  let totalPages = $derived(Math.ceil(restArticles.length / itemsPerPage));
+  let paginatedArticles = $derived(
+    restArticles.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+  );
 
   function clearFilters() {
     searchQuery = '';
     selectedTag = '';
+    currentPage = 1;
+  }
+  
+  function goToPage(page: number) {
+    currentPage = Math.max(1, Math.min(page, totalPages));
+  }
+  
+  function getPageNumbers() {
+    const pages = [];
+    const maxVisible = 5;
+    
+    if (totalPages <= maxVisible) {
+      for (let i = 1; i <= totalPages; i++) pages.push(i);
+    } else {
+      if (currentPage <= 3) {
+        for (let i = 1; i <= 4; i++) pages.push(i);
+        pages.push('...');
+        pages.push(totalPages);
+      } else if (currentPage >= totalPages - 2) {
+        pages.push(1);
+        pages.push('...');
+        for (let i = totalPages - 3; i <= totalPages; i++) pages.push(i);
+      } else {
+        pages.push(1);
+        pages.push('...');
+        for (let i = currentPage - 1; i <= currentPage + 1; i++) pages.push(i);
+        pages.push('...');
+        pages.push(totalPages);
+      }
+    }
+    return pages;
   }
 </script>
 
@@ -220,9 +270,9 @@
         {/if}
 
         <!-- Rest of articles grid -->
-        {#if restArticles.length > 0}
+        {#if paginatedArticles.length > 0}
           <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-            {#each restArticles as article, i (article.slug)}
+            {#each paginatedArticles as article, i (article.slug)}
               <article in:fly={{ y: 20, duration: 400, delay: i * 80 }}
                        class="card flex flex-col group overflow-hidden">
                   <!-- Image Section -->
@@ -285,6 +335,65 @@
               </article>
             {/each}
           </div>
+          
+          <!-- Pagination -->
+          {#if totalPages > 1}
+            <div class="mt-12 flex justify-center items-center gap-2">
+              <!-- Previous button -->
+              <button
+                onclick={() => goToPage(currentPage - 1)}
+                disabled={currentPage === 1}
+                class="p-2 rounded-lg transition-all disabled:opacity-30 disabled:cursor-not-allowed hover:bg-sage/20"
+                style="color:var(--color-grove)"
+              >
+                <ChevronLeft size={20} />
+              </button>
+              
+              <!-- Page numbers -->
+              <div class="flex gap-2">
+                {#each getPageNumbers() as page}
+                  {#if page === '...'}
+                    <span class="px-3 py-2 text-sm opacity-50">...</span>
+                  {:else}
+                    <button
+                      onclick={() => goToPage(page)}
+                      class="min-w-[40px] h-10 px-3 rounded-lg text-sm font-medium transition-all"
+                      style="background: {currentPage === page ? 'var(--color-grove)' : 'transparent'};
+                             color: {currentPage === page ? 'white' : 'var(--color-grove)'};
+                             border: 1px solid {currentPage === page ? 'transparent' : 'var(--color-sage)'}"
+                    >
+                      {page}
+                    </button>
+                  {/if}
+                {/each}
+              </div>
+              
+              <!-- Next button -->
+              <button
+                onclick={() => goToPage(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                class="p-2 rounded-lg transition-all disabled:opacity-30 disabled:cursor-not-allowed hover:bg-sage/20"
+                style="color:var(--color-grove)"
+              >
+                <ChevronRight size={20} />
+              </button>
+            </div>
+            
+            <!-- Items per page selector (optional) -->
+            <div class="mt-6 text-center">
+              <select
+                bind:value={itemsPerPage}
+                onchange={() => currentPage = 1}
+                class="text-sm px-3 py-1.5 rounded-lg border"
+                style="border-color:var(--color-sage); background:transparent; color:var(--color-grove)"
+              >
+                <option value={6}>6 per page</option>
+                <option value={9}>9 per page</option>
+                <option value={12}>12 per page</option>
+                <option value={restArticles.length}>All</option>
+              </select>
+            </div>
+          {/if}
         {/if}
       {/if}
     </div>

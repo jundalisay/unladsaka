@@ -18,6 +18,8 @@
   let submitting = $state(false);
   let statsVisible = $state(false);
   let statsRef: HTMLElement | undefined = $state();
+  let success = $state(false);
+  let errorMessage = $state("");
 
   import { ChevronDown } from 'lucide-svelte';
 
@@ -37,6 +39,33 @@
     if (statsRef) obs.observe(statsRef);
     return () => obs.disconnect();
   });
+
+
+  async function handleSubmit(event: Event) {
+    event.preventDefault();
+    submitting = true;
+    errorMessage = "";
+
+    const formData = new FormData(event.currentTarget as HTMLFormElement);
+    
+    try {
+      const response = await fetch("https://pantrypoints.com/api/external", {
+        method: "POST",
+        body: formData,
+        // Note: Do not set Content-Type header manually when sending FormData
+      });
+
+      if (response.ok) {
+        success = true;
+      } else {
+        errorMessage = "Something went wrong. Please try again.";
+      }
+    } catch (err) {
+      errorMessage = "Network error. Please check your connection.";
+    } finally {
+      submitting = false;
+    }
+  }
 
   const T: Record<string, Record<string, string>> = {
     hero_eyebrow: { en: 'Farmer Association', tl: 'Samahan ng mga Magsasaka', cb: 'Katilingban sa mga Mag-uuma' },
@@ -283,8 +312,9 @@
   </div>
 </section>
 
+
 <!-- ══ REGISTRATION FORM ═════════════════════════════════════════ -->
-<section id="register" class="section"
+<section id="register" class="section" 
          style="background:linear-gradient(160deg,var(--color-forest) 0%,var(--color-grove) 100%)">
   <div class="container">
     <div class="max-w-2xl mx-auto">
@@ -294,7 +324,7 @@
         <p class="opacity-75 leading-relaxed" style="color:rgba(255,255,255,0.8)">{t('reg_sub')}</p>
       </div>
 
-      {#if form?.success}
+      {#if success}
         <div in:scale={{ duration: 500, easing: elasticOut, start: 0.8 }}
              class="card p-10 text-center">
           <div class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-5"
@@ -311,46 +341,34 @@
         </div>
       {:else}
         <div class="card p-8 md:p-10">        
+          <form id="contact-form" on:submit={handleSubmit}>
+            <input type="hidden" name="source" value="Unlad Saka Registration at Root" />
+            <input type="hidden" name="lang" value="English" />
 
-
-            <form 
-              id="contact-form" 
-              method="POST" 
-              action="https://pantrypoints.com/api/external"
-              on:submit={() => submitting = true}>
-              <input type="hidden" name="source" value="Unlad Saka Registration at Root" />
-              <input type="hidden" name="lang" value="English" />
-
-              {#if form?.error}
-                <div in:fly={{ y: -8, duration: 300 }}
-                     class="flex items-center gap-2 mb-6 p-4 rounded-xl text-sm"
-                     style="background:#fff0f0;color:#b91c1c;border:1px solid #fecaca">
-                  <AlertCircle size={18} /> {form.error}
-                </div>
-              {/if}
-
+            {#if errorMessage}
+              <div in:fly={{ y: -8, duration: 300 }}
+                   class="flex items-center gap-2 mb-6 p-4 rounded-xl text-sm"
+               style="background:#fff0f0;color:#b91c1c;border:1px solid #fecaca">
+                <AlertCircle size={18} /> {errorMessage}
+              </div>
+            {/if}
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <input class="hidden" id="source" name="source" type="text" value="Unlad Saka Registration at Root" />
-
-              <!-- Full name (full width) -->
               <div class="md:col-span-2">
                 <label class="label" for="fn">{t('lbl_name')} *</label>
-                <input class="input" id="fn" name="name" type="text" required placeholder="Juan dela Cruz" autocomplete="name" />
+                <input class="input" id="fn" name="name" type="text" required placeholder="Juan dela Cruz" />
               </div>
-              <!-- Email -->
+              
               <div>
                 <label class="label" for="em">{t('lbl_email')} *</label>
-                <input class="input" id="em" name="email" type="email" required
-                       placeholder="juan@example.com" autocomplete="email" />
+                <input class="input" id="em" name="email" type="email" required placeholder="juan@example.com" />
               </div>
-              <!-- Phone -->
+
               <div>
                 <label class="label" for="ph">{t('lbl_phone')}</label>
-                <input class="input" id="ph" name="phone" type="tel"
-                       placeholder="+63 9XX XXX XXXX" autocomplete="tel" />
+                <input class="input" id="ph" name="phone" type="tel" placeholder="+63 9XX XXX XXXX" />
               </div>
-              <!-- Region -->
+
               <div>
                 <label class="label" for="rg">{t('lbl_region')}</label>
                 <select class="input" id="rg" name="country">
@@ -358,23 +376,20 @@
                   {#each regions as r}<option value={r}>{r}</option>{/each}
                 </select>
               </div>
-              <!-- Farm size -->
+
               <div>
                 <label class="label" for="fs">{t('lbl_farm')}</label>
-                <input class="input" id="fs" name="age" type="number" min="0" step="0.1"
-                       placeholder="0.5" />
+                <input class="input" id="fs" name="age" type="number" min="0" step="0.1" placeholder="0.5" />
               </div>
-              <!-- Crops (full width) -->
+
               <div class="md:col-span-2">
                 <label class="label" for="cr">{t('lbl_crops')}</label>
-                <input class="input" id="cr" name="subject" type="text"
-                       placeholder={t('lbl_cph')} />
+                <input class="input" id="cr" name="subject" type="text" placeholder={t('lbl_cph')} />
               </div>
-              <!-- Message (full width) -->
+
               <div class="md:col-span-2">
                 <label class="label" for="mg">{t('lbl_msg')}</label>
-                <textarea class="input" id="mg" name="message" rows="3"
-                          placeholder={t('lbl_mph')} style="resize:vertical;min-height:80px"></textarea>
+                <textarea class="input" id="mg" name="message" rows="3" placeholder={t('lbl_mph')}></textarea>
               </div>
             </div>
 
@@ -388,7 +403,6 @@
                   <Sprout size={18} /> {t('reg_btn')}
                 {/if}
               </button>
-              <p class="text-center text-xs mt-3 opacity-50">{t('reg_priv')}</p>
             </div>
           </form>
         </div>
@@ -396,6 +410,8 @@
     </div>
   </div>
 </section>
+
+
 
 <!-- ══ CTA STRIP ════════════════════════════════════════════════ -->
 <!-- <section style="background:var(--color-soil)">

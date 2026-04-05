@@ -319,6 +319,7 @@
               action="https://pantrypoints.com/api/external"
               on:submit={() => submitting = true}>
               <input type="hidden" name="source" value="Unlad Saka Registration at Root" />
+              <input type="hidden" name="lang" value="English" />
 
               {#if form?.error}
                 <div in:fly={{ y: -8, duration: 300 }}

@@ -75,8 +75,8 @@
       <div class="leading-none">
         <span class="font-serif font-bold text-lg block transition-colors"
               style="color:{scrolled ? 'white' : 'var(--color-cream)'}">Unlad Saka</span>
-        <span class="text-xs block mt-0.5 transition-colors"
-              style="color:{scrolled ? 'var(--color-wheat)' : 'var(--color-flax)'};opacity:0.7">Philippine Farm Association</span>
+        <!-- <span class="text-xs block mt-0.5 transition-colors"
+              style="color:{scrolled ? 'var(--color-wheat)' : 'var(--color-flax)'};opacity:0.7">Philippine Farm Association</span> -->
       </div>
     </a>
 
